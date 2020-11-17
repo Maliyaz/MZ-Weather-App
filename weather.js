@@ -1,4 +1,4 @@
-// feature #1
+// realtime Date
 let now = new Date();
 
 let hours = now.getHours();
@@ -42,7 +42,7 @@ let dateLayout = `${year} ${month} ${date}`;
 let displayDate = document.querySelector("#current-date");
 displayDate.innerHTML = dateLayout;
 
-// feature #2
+// realtime data
 
 function newCity(event) {
   event.preventDefault();
@@ -73,20 +73,3 @@ function showWeather(response) {
 let changeCity = document.querySelector("#search-form");
 changeCity.addEventListener("submit", newCity);
 
-// feature #3
-
-let celsiusButton = document.querySelector("#misura-c");
-celsiusButton.addEventListener("click", convertToCelsius);
-
-function convertToCelsius(event) {
-  event.preventDefault();
-  let displayedTemperature = document.querySelector("#grade");
-}
-
-let fahrenheitButton = document.querySelector("#misura-f");
-fahrenheitButton.addEventListener("click", convertTofahrenheit);
-
-function convertTofahrenheit(event) {
-  event.preventDefault();
-  let displayedTemperature = document.querySelector(("#grade" * 9) / 5 + 32);
-}

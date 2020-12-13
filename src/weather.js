@@ -55,8 +55,7 @@ function newCity(event) {
 }
 
 function showWeather(response) {
-  console.log(response);
-
+console.log(response.data);
   document.querySelector("#chosen-location").innerHTML = response.data.name;
   document.querySelector("#grade").innerHTML = Math.round(
     response.data.main.temp
@@ -68,8 +67,13 @@ function showWeather(response) {
     response.data.wind.speed
   );
   document.querySelector(".status").innerHTML = response.data.weather[0].main;
+
+  
 }
 
 let changeCity = document.querySelector("#search-form");
 changeCity.addEventListener("submit", newCity);
 
+let iconElement = document.querySelector("#icon");
+iconElement.setAttribute ("src",`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+iconElement.setAttribute ("alt",response.data.weather[0].description);

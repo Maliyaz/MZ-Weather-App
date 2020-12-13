@@ -60,7 +60,11 @@ console.log(response.data);
   document.querySelector("#grade").innerHTML = Math.round(
     response.data.main.temp
   );
-
+  //add precipitation air quality
+  document.querySelector("#grade-min").innerHTML=Math.round(response.data.main.temp_min);
+  document.querySelector("#grade-max").innerHTML=Math.round(response.data.main.temp_max);
+  document.querySelector("#value-pressure").innerHTML= response.data.main.pressure;
+  document.querySelector("#value-visibility").innerHTML= response.data.visibility;
   document.querySelector("#value-humidity").innerHTML =
     response.data.main.humidity;
   document.querySelector("#wind-speed").innerHTML = Math.round(

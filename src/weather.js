@@ -94,31 +94,30 @@ function handleSubmit(event) {
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 
-
 let celsiusTemperature = response.data.main.temp;
 let fahrenheitTemperature = response.data.main.temp;
 
 
-function changeCelciusTemperature (event) {
+function changeCelsiusTemperature (event) {
   event.preventDefault();
-  celciusClick.classList.add("active");
+  celsiusClick.classList.add("active");
   fahrenheitClick.classList.remove("active");
   let temperatureElement = document.querySelector("#grade");
-  temperatureElement.innerHTML =Math.round(celciusTemperature);
+  temperatureElement.innerHTML =Math.round(celsiusTemperature);
 }
 
-let celciusTemperature = null;
+let celsiusTemperature = null;
 
-let celciusClick = document.querySelector("#misura-c");
-celciusClick.addEventListener ("click", changeCelciusTemperature);
+let celsiusClick = document.querySelector("#misura-c");
+celsiusClick.addEventListener ("click", changeCelsiusTemperature);
 
 
 function changeFahrenheitTemperature (event) {
   event.preventDefault();
   fahrenheitClick.classList.add("active");
-  celciusClick.classList.remove("active");
+  celsiusClick.classList.remove("active");
   let temperatureElement = document.querySelector("#grade");
-  temperatureElement.innerHTML =Math.round((celciusTemperature*9)/5+32);
+  temperatureElement.innerHTML =Math.round((celsiusTemperature*9)/5+32);
 }
 
 

@@ -149,6 +149,15 @@ section.top {
   border: 3px solid #ba9d91;
   border-radius: 8px;
 }
+
+.link {
+  color: #ba9d91;
+  text-decoration-line: none;
+}
+.link:hover {
+  text-decoration-line: none;
+  color: white;
+}
 #more {
   display: block;
   text-align: center;

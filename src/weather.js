@@ -42,7 +42,7 @@ let dateLayout = `${year} ${month} ${date}`;
 let displayDate = document.querySelector("#current-date");
 displayDate.innerHTML = dateLayout;
 
-// realtime data
+// realtime data API
 
 function newCity(event) {
   event.preventDefault();
@@ -76,44 +76,38 @@ console.log(response.data);
 let iconElement = document.querySelector("#main-icon");
 iconElement.setAttribute ("src",`icons/${response.data.weather[0].icon}.svg`);
 iconElement.setAttribute ("alt",`${response.data.weather[0].description}`);
+
+celciusTemperture = response.data.main.temp;
 }
 
-let changeCity = document.querySelector("#search-form");
-changeCity.addEventListener("submit", newCity);
 
 
 
 
 //change Measurement
 
-
-let celsiusTemperature = response.data.main.temp;
-
-
-
-function changeCelsiusTemperature (event) {
+let changeCity = document.querySelector("#search-form");
+changeCity.addEventListener("submit", newCity);
+let celsiusTemperature = 0;
+function changeCelciusTemperature(event) {
   event.preventDefault();
-  celsiusClick.classList.add("active");
+  celciusClick.classList.add("active");
   fahrenheitClick.classList.remove("active");
   let temperatureElement = document.querySelector("#grade");
-  temperatureElement.innerHTML =Math.round(celsiusTemperature);
+  temperatureElement.innerHTML = Math.round(celciusTemperture);
 }
-
-let celsiusClick = document.querySelector("#misura-c");
-celsiusClick.addEventListener ("click", changeCelsiusTemperature);
-
-
-function changeFahrenheitTemperature (event) {
+let celciusTemperture = null;
+let celciusClick = document.querySelector("#misura-c");
+celciusClick.addEventListener("click", changeCelciusTemperature);
+function changeFahrenheitTemperature(event) {
   event.preventDefault();
   fahrenheitClick.classList.add("active");
-  celsiusClick.classList.remove("active");
+  celciusClick.classList.remove("active");
   let temperatureElement = document.querySelector("#grade");
-  temperatureElement.innerHTML =Math.round((celsiusTemperature*9)/5+32);
+  temperatureElement.innerHTML = Math.round((celciusTemperture * 9) / 5 + 32);
 }
-
-
 let fahrenheitClick = document.querySelector("#misura-f");
-fahrenheitClick.addEventListener ("click", changeFahrenheitTemperature);
+fahrenheitClick.addEventListener("click", changeFahrenheitTemperature);
 
 
 search("Florence");

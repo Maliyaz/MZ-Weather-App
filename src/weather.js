@@ -81,7 +81,7 @@ changeCity.addEventListener("submit", newCity);
 let descriptionElement = document.querySelector ("#status")
 document.querySelector("#status").innerHTML = response.data.weather[0].main;
 let iconElement = document.querySelector("#main-icon");
-iconElement.setAttribute ("src",`icons/wi-night${descriptionElement}.svg`);
+iconElement.setAttribute ("src",`icons/${response.data.weather[0].icon}.svg`);
 iconElement.setAttribute ("alt",`${descriptionElement}`);
 
 

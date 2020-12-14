@@ -42,6 +42,8 @@ body {
   width: 140px;
   margin: 0 auto;
   margin-top: -50px;
+}
+#main-icon path {
   fill: #ff3366;
 }
 h2 {

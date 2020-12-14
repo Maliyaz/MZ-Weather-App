@@ -86,17 +86,9 @@ changeCity.addEventListener("submit", newCity);
 
 //change Measurement
 
-function handleSubmit(event) {
-  event.preventDefault();
-  let cityInputElement = document.querySelector("#city-input");
-  newCity(cityInputElement.value);
-}
-let form = document.querySelector("#search-form");
-form.addEventListener("submit", handleSubmit);
-
 
 let celsiusTemperature = response.data.main.temp;
-let fahrenheitTemperature = response.data.main.temp;
+
 
 
 function changeCelsiusTemperature (event) {

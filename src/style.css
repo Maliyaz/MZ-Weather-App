@@ -53,6 +53,9 @@ h2 {
   margin-top: 15px;
   font-weight: bold;
 }
+#thermometer {
+  max-width: 40px;
+}
 h4 {
   color: #ba9d91;
   font-weight: thin;

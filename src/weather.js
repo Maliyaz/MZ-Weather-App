@@ -72,15 +72,16 @@ console.log(response.data);
   );
   document.querySelector("#status").innerHTML = response.data.weather[0].main;
 
+//iconDisplaychanges
+let iconElement = document.querySelector("#main-icon");
+iconElement.setAttribute ("src",`icons/${response.data.weather[0].icon}.svg`);
+iconElement.setAttribute ("alt",`${response.data.weather[0].description}`);
 }
 
 let changeCity = document.querySelector("#search-form");
 changeCity.addEventListener("submit", newCity);
 
-//iconDisplaychanges
-let iconElement = document.querySelector("#main-icon");
-iconElement.setAttribute ("src",`icons/${response.data.weather[0].icon}.svg`);
-iconElement.setAttribute ("alt",`${response.data.weather[0].description}`);
+
 
 
 //change Measurement

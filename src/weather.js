@@ -105,6 +105,8 @@ function changeFahrenheitTemperature(event) {
   celciusClick.classList.remove("active");
   let temperatureElement = document.querySelector("#grade");
   temperatureElement.innerHTML = Math.round((celciusTemperture * 9) / 5 + 32);
+  let degreeIcon =document.querySelector ("#degree");
+  degreeIcon.setAttribute ("src",`icons/fahrenheit.svg`);
 }
 let fahrenheitClick = document.querySelector("#misura-f");
 fahrenheitClick.addEventListener("click", changeFahrenheitTemperature);

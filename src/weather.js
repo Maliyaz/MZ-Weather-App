@@ -85,7 +85,6 @@ iconElement.setAttribute ("alt",`${response.data.weather[0].description}`);
 
 //change Measurement
 
-
 function handleSubmit(event) {
   event.preventDefault();
   let cityInputElement = document.querySelector("#city-input");
@@ -93,6 +92,7 @@ function handleSubmit(event) {
 }
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
+
 
 let celsiusTemperature = response.data.main.temp;
 let fahrenheitTemperature = response.data.main.temp;
@@ -105,8 +105,6 @@ function changeCelsiusTemperature (event) {
   let temperatureElement = document.querySelector("#grade");
   temperatureElement.innerHTML =Math.round(celsiusTemperature);
 }
-
-let celsiusTemperature = null;
 
 let celsiusClick = document.querySelector("#misura-c");
 celsiusClick.addEventListener ("click", changeCelsiusTemperature);

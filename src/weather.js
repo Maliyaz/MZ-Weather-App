@@ -70,7 +70,7 @@ console.log(response.data);
   document.querySelector("#wind-speed").innerHTML = Math.round(
     response.data.wind.speed
   );
-  document.querySelector(".status").innerHTML = response.data.weather[0].main;
+  document.querySelector("#status").innerHTML = response.data.weather[0].main;
 
 }
 
@@ -78,23 +78,22 @@ let changeCity = document.querySelector("#search-form");
 changeCity.addEventListener("submit", newCity);
 
 //iconDisplaychanges
-let iconElement = document.querySelector("#icon");
-iconElement.setAttribute ("src",`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
-iconElement.setAttribute ("alt",response.data.weather[0].description);
+let descriptionElement = document.querySelector ("#status")
+document.querySelector("#status").innerHTML = response.data.weather[0].main;
+let iconElement = document.querySelector("#main-icon");
+iconElement.setAttribute ("src",`icons/wi-night${descriptionElement}.svg`);
+iconElement.setAttribute ("alt",`${descriptionElement}`);
 
 
 //change Measurement
-function handleSubmit(event) {
-  event.preventDefault();
-  let cityInputElement = document.querySelector("#city-input");
-  search(cityInputElement.value);
-}
 
-let form = document.querySelector ("search-form");
-form.addEventListener("submit", handleSubmit);
+let celsiusTemperature = response.data.main.temp;
+let fahrenheitTemperature = response.data.main.temp;
+
 
 function changeCelciusTemperature (event) {
   event.preventDefault();
+  let gradeToF = (celci)
   celciusClick.classList.add("active");
   fahrenheitClick.classList.remove("active");
   let temperatureElement = document.querySelector("#grade");

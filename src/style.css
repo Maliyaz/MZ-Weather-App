@@ -25,7 +25,7 @@ body {
   display: block;
   text-align: center;
 }
-.status {
+#status {
   text-align: center;
   color: #ff9800;
   font-family: "Poppins", sans-serif;
@@ -36,12 +36,13 @@ body {
   margin: 0px 150px 0px 150px;
   background: rgb(255, 255, 255, 0.5);
 }
-#icon {
+#main-icon {
   display: center;
   text-align: center;
   width: 140px;
   margin: 0 auto;
   margin-top: -50px;
+  fill: #ff3366;
 }
 h2 {
   color: #f57c00;

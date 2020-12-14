@@ -124,4 +124,4 @@ let fahrenheitClick = document.querySelector("#misura-f");
 fahrenheitClick.addEventListener ("click", changeFahrenheitTemperature);
 
 
-
+search("Florence");

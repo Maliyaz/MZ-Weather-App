@@ -60,7 +60,7 @@ console.log(response.data);
   document.querySelector("#grade").innerHTML = Math.round(
     response.data.main.temp
   );
-  //add precipitation air quality
+  //weather extra infos
   document.querySelector("#grade-min").innerHTML=Math.round(response.data.main.temp_min);
   document.querySelector("#grade-max").innerHTML=Math.round(response.data.main.temp_max);
   document.querySelector("#value-pressure").innerHTML= response.data.main.pressure;
@@ -78,14 +78,21 @@ let changeCity = document.querySelector("#search-form");
 changeCity.addEventListener("submit", newCity);
 
 //iconDisplaychanges
-let descriptionElement = document.querySelector ("#status")
-document.querySelector("#status").innerHTML = response.data.weather[0].main;
 let iconElement = document.querySelector("#main-icon");
 iconElement.setAttribute ("src",`icons/${response.data.weather[0].icon}.svg`);
-iconElement.setAttribute ("alt",`${descriptionElement}`);
+iconElement.setAttribute ("alt",`${response.data.weather[0].description}`);
 
 
 //change Measurement
+
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#city-input");
+  newCity(cityInputElement.value);
+}
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", handleSubmit);
+
 
 let celsiusTemperature = response.data.main.temp;
 let fahrenheitTemperature = response.data.main.temp;
@@ -93,7 +100,6 @@ let fahrenheitTemperature = response.data.main.temp;
 
 function changeCelciusTemperature (event) {
   event.preventDefault();
-  let gradeToF = (celci)
   celciusClick.classList.add("active");
   fahrenheitClick.classList.remove("active");
   let temperatureElement = document.querySelector("#grade");
@@ -111,12 +117,11 @@ function changeFahrenheitTemperature (event) {
   fahrenheitClick.classList.add("active");
   celciusClick.classList.remove("active");
   let temperatureElement = document.querySelector("#grade");
-  temperatureElement.innerHTML =Math.round(fahrenheitTemperture);
+  temperatureElement.innerHTML =Math.round(celciusTemperture*9)/5+32;
 }
 
-let fahrenheitTemperture = null;
 
-let fahrenheitClick = document.querySelector("#misura-c");
+let fahrenheitClick = document.querySelector("#misura-f");
 fahrenheitClick.addEventListener ("click", changeFahrenheitTemperature);
 
 

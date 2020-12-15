@@ -2,8 +2,14 @@
 let now = new Date();
 
 let hours = now.getHours();
+if (hours < 10) {
+    hours = `0${hours}`;
+  }
 let minutes = now.getMinutes();
-
+if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+  
 let days = [
   "Sunday",
   "Monday",
@@ -42,7 +48,8 @@ let dateLayout = `${year} ${month} ${date}`;
 let displayDate = document.querySelector("#current-date");
 displayDate.innerHTML = dateLayout;
 
-// realtime data API
+// realtime data API - information about the search assignment
+
 
 function newCity(event) {
   event.preventDefault();
@@ -56,7 +63,6 @@ function newCity(event) {
   apiUrl = `https://api.openweathermap.org/data/2.5/onecall?q=${city}&exclude=minutely,hourly,alerts&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showForecast);
 
-
 }
 function showForecast (response) {
   
@@ -65,11 +71,11 @@ function showForecast (response) {
   console.log(forecast);
   forecastElement.innerHTML = `
   <div class="col-2" id=day-one>
-        ${response.data.daily.dt}
+        ${response.data.daily[0].dt}
         <br />
-        <img src="icons/${daily.weather[0].icon}.svg" alt="${daily.weather[0].description}" class="forecastIcons" id=image-one>
+        <img src="icons/${daily[0].weather.icon}.svg" alt="${daily[0].weather.description}" class="forecastIcons" id=image-one>
         <br />
-        <strong>${Math.round(daily.temp.max)}°</strong> /${Math.round(daily.temp.min)}°
+        <strong>${Math.round(daily[0].temp.max)}°</strong> /${Math.round(daily.temp.min)}°
       </div>
       `;
 
@@ -167,5 +173,5 @@ function changeFahrenheitTemperature(event) {
 let fahrenheitClick = document.querySelector("#misura-f");
 fahrenheitClick.addEventListener("click", changeFahrenheitTemperature);
 
-
-
+//assign a comand
+search ("Milan");

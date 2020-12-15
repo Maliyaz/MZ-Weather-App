@@ -52,8 +52,29 @@ function newCity(event) {
     `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
   axios.get(apiUrl).then(showWeather);
-}
 
+  apiUrl = `https://api.openweathermap.org/data/2.5/onecall?q=${city}&exclude=minutely,hourly,alerts&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(showForecast);
+
+
+}
+function showForecast (response) {
+  
+  let forecastElement =document.querySelector("#forecast");
+  let forecast = response.data.daily[0];
+  console.log(forecast);
+  forecastElement.innerHTML = `
+  <div class="col-2" id=day-one>
+        ${response.data.daily.dt}
+        <br />
+        <img src="icons/${daily.weather[0].icon}.svg" alt="${daily.weather[0].description}" class="forecastIcons" id=image-one>
+        <br />
+        <strong>${Math.round(daily.temp.max)}°</strong> /${Math.round(daily.temp.min)}°
+      </div>
+      `;
+
+
+}
 function showWeather(response) {
 console.log(response.data);
   document.querySelector("#chosen-location").innerHTML = response.data.name;
@@ -82,8 +103,6 @@ celciusTemperture = response.data.main.temp;
 
 
 
-
-
 //change Measurement
 
 let changeCity = document.querySelector("#search-form");
@@ -91,25 +110,62 @@ changeCity.addEventListener("submit", newCity);
 let celsiusTemperature = 0;
 function changeCelciusTemperature(event) {
   event.preventDefault();
+  //disable the event to avoid double conversions
   celciusClick.classList.add("active");
   fahrenheitClick.classList.remove("active");
   let temperatureElement = document.querySelector("#grade");
   temperatureElement.innerHTML = Math.round(celciusTemperture);
+  //adding conversion temp min and max
+  let forecastItemsMax = document.querySelectorAll(".forecast-max-temp");
+  forecastItemsMax.forEach(function (item) {
+    // grabbing the current value to convert
+    let currentTemp = item.innerHTML;
+    // convert to Fahrenheit
+    item.innerHTML = Math.round(((currentTemp - 32) * 5) / 9);
+  });
+  let forecastItemsMin = document.querySelectorAll(".forecast-min-temp");
+  forecastItemsMin.forEach(function (item) {
+    // grabbing the current value to convert
+    let currentTemp = item.innerHTML;
+    // convert to Fahrenheit
+    item.innerHTML = Math.round(((currentTemp - 32) * 5) / 9);});
+
 }
 let celciusTemperture = null;
 let celciusClick = document.querySelector("#misura-c");
 celciusClick.addEventListener("click", changeCelciusTemperature);
+
+
 function changeFahrenheitTemperature(event) {
   event.preventDefault();
+  //disable the event to avoid double conversions
   fahrenheitClick.classList.add("active");
   celciusClick.classList.remove("active");
   let temperatureElement = document.querySelector("#grade");
   temperatureElement.innerHTML = Math.round((celciusTemperture * 9) / 5 + 32);
+//adding conversion temp min and max
+  let forecastItemsMax = document.querySelectorAll("#grade-max");
+  forecastItemsMax.forEach(function (item) {
+    // grabbing the current value to convert
+    let currentTemp = item.innerHTML;
+    // convert to Fahrenheit
+    item.innerHTML = Math.round((currentTemp * 9) / 5 + 32);
+  });
+
+  let forecastItemsMin = document.querySelectorAll("#grade-min");
+  forecastItemsMin.forEach(function (item) {
+    // grabbing the current value to convert
+    let currentTemp = item.innerHTML;
+    // convert to Fahrenheit
+    item.innerHTML = Math.round((currentTemp * 9) / 5 + 32);
+  });
+
   let degreeIcon =document.querySelector ("#degree");
   degreeIcon.setAttribute ("src",`icons/fahrenheit.svg`);
+
 }
 let fahrenheitClick = document.querySelector("#misura-f");
 fahrenheitClick.addEventListener("click", changeFahrenheitTemperature);
 
 
-search("Florence");
+

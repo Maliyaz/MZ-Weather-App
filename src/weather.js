@@ -149,10 +149,10 @@ function changeCelciusTemperature(event) {
     let currentTemp = item.innerHTML;
     // convert to Fahrenheit
     item.innerHTML = Math.round(((currentTemp-32)* 5)/9);
-    let degreeIcon =item.innerHTML;
-  item.innerHTML.setAttribute ("src",`icons/celsius.svg`);
+    
   });
-
+let degreeIcon =document.querySelector ("#degree");
+  degreeIcon.setAttribute ("src",`icons/celsius.svg`);
 };
 let celciusTemperture = null;
 let celciusClick = document.querySelector("#misura-c");

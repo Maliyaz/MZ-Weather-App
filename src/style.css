@@ -90,8 +90,8 @@ h4 {
 .centerRiga {
   text-align: center;
 }
-.fa-angle-double-right {
-  font-size: 30px;
+.forecastIcons {
+  max-width: 50%;
 }
 .otherInfo {
   text-align: right;

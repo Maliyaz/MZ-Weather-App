@@ -9,7 +9,7 @@ let minutes = now.getMinutes();
 if (minutes < 10) {
     minutes = `0${minutes}`;
   }
-  
+
 let days = [
   "Sunday",
   "Monday",
@@ -62,7 +62,21 @@ function newCity(event) {
 
   apiUrl = `https://api.openweathermap.org/data/2.5/onecall?q=${city}&exclude=minutely,hourly,alerts&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showForecast);
+}
 
+//function to display forecast time
+function showForecastTime (timestamp) {
+let forecastDate = new Date (timestamp);
+let days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday"
+];
+let day = days[now.getDay()];
 }
 function showForecast (response) {
   
@@ -71,7 +85,7 @@ function showForecast (response) {
   console.log(forecast);
   forecastElement.innerHTML = `
   <div class="col-2" id=day-one>
-        ${response.data.daily[0].dt}
+        ${showForecastTime}
         <br />
         <img src="icons/${daily[0].weather.icon}.svg" alt="${daily[0].weather.description}" class="forecastIcons" id=image-one>
         <br />
@@ -129,12 +143,14 @@ function changeCelciusTemperature(event) {
     item.innerHTML = Math.round(((currentTemp-32)* 5)/9);
   });
 
-  let forecastItemsMin = document.querySelectorAll("grade-min");
+  let forecastItemsMin = document.querySelectorAll("#grade-min");
   forecastItemsMin.forEach(function (item) {
     // grabbing the current value to convert
     let currentTemp = item.innerHTML;
     // convert to Fahrenheit
     item.innerHTML = Math.round(((currentTemp-32)* 5)/9);
+    let degreeIcon =item.innerHTML;
+  item.innerHTML.setAttribute ("src",`icons/celsius.svg`);
   });
 
 };
@@ -158,7 +174,7 @@ function changeFahrenheitTemperature(event) {
     item.innerHTML = Math.round((currentTemp * 9) / 5 + 32);
   });
 
-  let forecastItemsMin = document.querySelectorAll("grade-min");
+  let forecastItemsMin = document.querySelectorAll("#grade-min");
   forecastItemsMin.forEach(function (item) {
     // grabbing the current value to convert
     let currentTemp = item.innerHTML;

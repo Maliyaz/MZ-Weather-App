@@ -110,27 +110,28 @@ changeCity.addEventListener("submit", newCity);
 let celsiusTemperature = 0;
 function changeCelciusTemperature(event) {
   event.preventDefault();
-  //disable the event to avoid double conversions
   celciusClick.classList.add("active");
   fahrenheitClick.classList.remove("active");
   let temperatureElement = document.querySelector("#grade");
   temperatureElement.innerHTML = Math.round(celciusTemperture);
   //adding conversion temp min and max
-  let forecastItemsMax = document.querySelectorAll(".forecast-max-temp");
+  let forecastItemsMax = document.querySelectorAll("#grade-max");
   forecastItemsMax.forEach(function (item) {
     // grabbing the current value to convert
     let currentTemp = item.innerHTML;
     // convert to Fahrenheit
-    item.innerHTML = Math.round(((currentTemp - 32) * 5) / 9);
+    item.innerHTML = Math.round(((currentTemp-32)* 5)/9);
   });
-  let forecastItemsMin = document.querySelectorAll(".forecast-min-temp");
+
+  let forecastItemsMin = document.querySelectorAll("grade-min");
   forecastItemsMin.forEach(function (item) {
     // grabbing the current value to convert
     let currentTemp = item.innerHTML;
     // convert to Fahrenheit
-    item.innerHTML = Math.round(((currentTemp - 32) * 5) / 9);});
+    item.innerHTML = Math.round(((currentTemp-32)* 5)/9);
+  });
 
-}
+};
 let celciusTemperture = null;
 let celciusClick = document.querySelector("#misura-c");
 celciusClick.addEventListener("click", changeCelciusTemperature);
@@ -138,7 +139,6 @@ celciusClick.addEventListener("click", changeCelciusTemperature);
 
 function changeFahrenheitTemperature(event) {
   event.preventDefault();
-  //disable the event to avoid double conversions
   fahrenheitClick.classList.add("active");
   celciusClick.classList.remove("active");
   let temperatureElement = document.querySelector("#grade");
@@ -152,7 +152,7 @@ function changeFahrenheitTemperature(event) {
     item.innerHTML = Math.round((currentTemp * 9) / 5 + 32);
   });
 
-  let forecastItemsMin = document.querySelectorAll("#grade-min");
+  let forecastItemsMin = document.querySelectorAll("grade-min");
   forecastItemsMin.forEach(function (item) {
     // grabbing the current value to convert
     let currentTemp = item.innerHTML;
